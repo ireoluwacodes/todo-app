@@ -3,13 +3,13 @@ import { HydratedDocument } from 'mongoose';
 
 export type CatDocument = HydratedDocument<ToDo>;
 
-@Schema({timestamps : true})
+@Schema({ timestamps: true })
 export class ToDo {
-  @Prop({required : true})
+  @Prop({ required: true })
   name: string;
 
   @Prop({ type: Date })
-  completedAt: string;
+  completedAt: Date;
 
   @Prop({ default: 'incomplete', enum: ['complete', 'incomplete'] })
   status: string;

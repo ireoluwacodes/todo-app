@@ -18,17 +18,25 @@ export class ToDoService {
     return this.ToDoModel.find().exec();
   }
 
-  findOne(id: number) : Promise<ToDo> {
+  findOne(id: string) : Promise<ToDo> {
     return this.ToDoModel.findById(id);
   }
 
-  update(id: number, updateToDoDto: UpdateToDoDto) : Promise<ToDo> {
+  update(id: string, updateToDoDto: UpdateToDoDto) : Promise<ToDo> {
     return this.ToDoModel.findByIdAndUpdate(id, updateToDoDto, {
       new : true
     });
   }
 
-  remove(id: number) : Promise<ToDo> {
+  complete(id:string): Promise<ToDo>{
+    return this.ToDoModel.findByIdAndUpdate(id, {
+      completedAt : Date.now()
+    }, {
+      new : true
+    });
+  }
+  
+  remove(id: string) : Promise<ToDo> {
     return this.ToDoModel.findByIdAndDelete(id);
   }
 }
